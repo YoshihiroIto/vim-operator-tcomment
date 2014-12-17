@@ -26,11 +26,7 @@ if exists('g:loaded_vim_operator_tcomment') && g:loaded_vim_operator_tcomment
   finish
 endif
 
-call operator#user#define(
-      \   'tcomment',
-      \   'operator#tcomment#op_tcomment',
-      \   'let g:operator#tcomment#save_pos = getpos(".") \| let g:operator#tcomment#save_screen_pos = line("w0")'
-      \ )
+call operator#user#define('tcomment', 'operator#tcomment#op_tcomment', 'call operator#tcomment#save_pos()')
 
 let g:loaded_vim_operator_tcomment = 1
 " vim: set ts=2 sw=2 sts=2 et :

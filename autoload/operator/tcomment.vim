@@ -31,7 +31,13 @@ function! s:restore_screen_pos()
   endif
 endfunction
 
+function! operator#tcomment#save_pos()
+  let g:operator#tcomment#save_pos        = getpos(".")
+  let g:operator#tcomment#save_screen_pos = line("w0")
+endfunction
+
 function! operator#tcomment#op_tcomment(motion_wiseness)
+
   if a:motion_wiseness == 'char'
     " todo:起動１度目に暴発してしまう。なぜ？
     " TCommentInline
@@ -39,15 +45,16 @@ function! operator#tcomment#op_tcomment(motion_wiseness)
     execute "silent! normal" "`[V`]\gc"
   endif
 
-  " Do not move cursor and screen
   if exists('g:operator#tcomment#save_pos')
     call setpos('.', g:operator#tcomment#save_pos)
-    unlet g:operator#tcomment#save_pos
+    " unlet g:operator#tcomment#save_pos
   endif
 
   if exists('g:operator#tcomment#save_screen_pos')
     call s:restore_screen_pos()
-    unlet g:operator#tcomment#save_screen_pos
+    " unlet g:operator#tcomment#save_screen_pos
   endif
+
+  echom "C"
 endfunction
 " vim: set ts=2 sw=2 sts=2 et :
