@@ -54,7 +54,5 @@ function! operator#tcomment#op_tcomment(motion_wiseness)
     call s:restore_screen_pos()
     " unlet g:operator#tcomment#save_screen_pos
   endif
-
-  echom "C"
 endfunction
 " vim: set ts=2 sw=2 sts=2 et :
